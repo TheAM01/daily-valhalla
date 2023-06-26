@@ -14,6 +14,7 @@ function buildPost(socket) {
         let title = document.getElementById("title");
         let author = document.getElementById("author");
         let thumbnail = document.getElementById("thumbnail");
+        let tags = document.getElementById("tags")
 
         const anchorCollectionDiv = document.getElementById("anchor_collection");
         const contentDiv = document.getElementById("content");
@@ -21,6 +22,7 @@ function buildPost(socket) {
         date.innerHTML = response.time
         title.innerHTML = response.title;
         author.innerHTML = response.credits.author.name;
+        if (response.tags) tags.innerHTML = "<span class=\"emphasis\">Tags: </span>" + response.tags.join(', ')
         author.setAttribute("href", response.credits.author.url);
         thumbnail.setAttribute("src", response.image);
 
@@ -171,6 +173,7 @@ function latestPosts(socket) {
     socket.emit("latest");
 
     socket.on("latest", (data) => {
+        console.log(data)
 
         const order = Object.keys(data).sort((a, b) =>  a - b);
         const sorted = []
@@ -226,16 +229,60 @@ function latestPosts(socket) {
     });
 }
 
-// <div class="latest_post_parent">
-//     <div class="latest_post_thumbnail_parent">
-//         <img src="" alt="" class="latest_post_thumbnail">
-//     </div>
-//     <div class="latest_post_details">
-//         <div class="latest_post_title"></div>
-//         <div class="latest_post_author"></div>
-//     </div>
-// </div>
+function getTopic(socket) {
 
+    const urx = new URL(window.location.href);
+    const topic = (urx.pathname.split('/')[2]);
+
+    socket.emit("get_topic", topic.replaceAll("+", " ").replaceAll("%20", " "));
+
+    socket.on("get_topic", (data) => {
+    
+
+        data.forEach(p => {
+
+            
+            const parent = document.createElement("a");
+            parent.setAttribute("class", "latest_post_parent");
+            parent.setAttribute("href", `${p.url}`)
+            
+            const thumbnailParent = document.createElement("div");
+            thumbnailParent.setAttribute("class", "latest_post_thumbnail_parent");
+    
+            const thumbnail = document.createElement("img");
+            thumbnail.setAttribute("class", "latest_post_thumbnail");
+            thumbnail.setAttribute("src", p.image);
+    
+            const title = document.createElement("div");
+            title.setAttribute("class", "latest_post_title");
+            title.innerHTML = p.title
+            
+            const details = document.createElement("div");
+            details.setAttribute("class", "latest_post_details");
+    
+            const author = document.createElement("div");
+            author.setAttribute("class", "latest_post_author");
+            author.innerHTML = p.credits.author.name;
+
+            const preview = document.createElement("div");
+            preview.setAttribute("class", "latest_post_preview");
+            preview.innerHTML = p.tags.join('\n');
+            
+            
+            details.appendChild(title);
+            details.appendChild(author);
+            details.appendChild(preview)
+    
+            thumbnailParent.appendChild(thumbnail);
+            
+            parent.appendChild(thumbnailParent);
+            parent.appendChild(details);
+            
+            document.getElementById("topic_relevant_posts").appendChild(parent);
+        });
+        
+    });
+}
 
 function removeHeading(element) {
     const className = element.parentElement.className;

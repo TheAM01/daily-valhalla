@@ -18,7 +18,6 @@ function socket(socket, io, dir) {
 
         files.forEach(file => {
             const f = fs.readFileSync(`${dir}/Public/Posts/${file}`, {encoding: 'utf8'});
-            console.log(f)
             const data = JSON.parse(f)
 
             arr.push({
@@ -76,8 +75,28 @@ function socket(socket, io, dir) {
 
         });
 
-        io.to(socket.id).emit("latest", obj)
-    })
+        io.to(socket.id).emit("latest", obj);
+
+    });
+
+    socket.on("get_topic", (topic) => {
+        const results = []
+        fs.readdirSync(dir + "/Public/Posts").forEach(postPath => {
+            const post = fs.readFileSync(dir + "/Public/Posts/" + postPath);
+
+            const parsed = JSON.parse(post)
+
+            if (!parsed.tags) return
+
+            parsed.tags.forEach(t => {
+                if (t.toLowerCase() === topic.toLowerCase()) results.push(parsed)
+            })
+
+        });
+
+        io.to(socket.id).emit("get_topic", results);
+
+    });
 
 }
 

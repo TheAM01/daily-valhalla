@@ -240,7 +240,7 @@
     margin-right: 10px;
 }
 
-#latest_posts {
+#latest_posts, #topic_relevant_posts {
     flex-direction: column;
 }
 
@@ -251,6 +251,14 @@
     color: black;
     text-decoration: none;
     transition: 0.2s;
+}
+
+.post_tags {
+    color: gray;
+}
+
+.post_tags span {
+    margin-right: 1em;
 }
 
 .latest_post_parent:hover {

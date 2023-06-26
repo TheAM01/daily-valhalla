@@ -34,19 +34,7 @@
 
         <div class="content" id="content">
 
-            <div class="main_heading" id="title"></div>
-
-            <div class="credits">
-                By <a href="" class="author" id="author"></a> on <span class="date" id="date"></span>
-            </div>
-
-            <div class="post_tags" id="tags"></div>
-
-            <img src="" alt="thumbnail" class="article_thumbnail" id="thumbnail">
-
-            <div class="anchor_collection" id="anchor_collection">
-                <span class="emphasis">Content</span>
-            </div>
+            <div id="topic_relevant_posts"></div>
 
         </div>
 
@@ -62,9 +50,9 @@
     <script src="/script.js"></script>
     <script>
         const socket = io();
-        buildPost(socket);
         getRelatedPosts(socket);
         loadHome(socket);
+        getTopic(socket);
     </script>
 
 </body>

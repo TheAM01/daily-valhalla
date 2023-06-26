@@ -18,6 +18,10 @@ function createRoutes (app, dir) {
         res.sendFile(j(dir, "/Public/Static/latest.html"))
     });
 
+    app.get('/topic/:topic', (req, res) => {
+        res.sendFile(j(dir, "/Public/Dynamic/topic.html"));
+    })
+
     app.get('/post/:id', (req, res) => {
         const exists = fs.existsSync(j(dir, `/Public/Posts/${req.params.id}.json`));
         if (!exists) return res.sendStatus(404);
@@ -30,7 +34,11 @@ function createRoutes (app, dir) {
 
     app.get('/script.js', (req, res) => {
         res.sendFile(j(dir, '/Public/Scripts/script.js'))
-    })
+    });
+
+    app.get('/form.js', (req, res) => {
+        res.sendFile(j(dir, '/Public/Scripts/form.js'))
+    });
 
     app.get('/style.css', (req, res) => {
         res.sendFile(j(dir, '/Public/Styles/style.css'))

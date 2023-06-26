@@ -6,8 +6,6 @@ function create(req, res, dir) {
     const post = {}
     let empty = false;
 
-    console.log(body);
-
     Object.values(body).forEach(v => {
         if (v.length === 0) empty = true;
     })
@@ -16,11 +14,11 @@ function create(req, res, dir) {
 
     if(!isValidURL(body.thumbnail)) return res.redirect('/');
 
-    post.title = body.title;
+    post.title = body.title.replace(/[^\p{L}\p{N}\p{P}\p{Z}^$\n]/gu, '');
     post.image = body.thumbnail;
     post.time = Date().split(' ').splice(0, 5).join(' ');
     post.timeInMs = Date.now().toString();
-    post.url = `/post/${body.title.toLowerCase().replaceAll(" ", "-").replaceAll(":", "-")}`
+    post.url = `/post/${body.title.toLowerCase().replaceAll(" ", "-").replaceAll(":", "-").replace(/[^\p{L}\p{N}\p{P}\p{Z}^$\n]/gu, '')}`
     post.content = {};
     post.credits = {
         author: {
@@ -28,6 +26,14 @@ function create(req, res, dir) {
             name: 'Mueed'
         }
     }
+    
+    const tags = [];
+    
+    body.tags.split(',').forEach((t, i) => {
+        tags[i] = t.trim()
+    });
+    
+    post.tags = tags
 
     Object.keys(body).forEach(k => {
         if (k.startsWith("heading")) {
