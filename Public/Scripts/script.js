@@ -22,7 +22,28 @@ function buildPost(socket) {
         date.innerHTML = response.time
         title.innerHTML = response.title;
         author.innerHTML = response.credits.author.name;
-        if (response.tags) tags.innerHTML = "<span class=\"emphasis\">Tags: </span>" + response.tags.join(', ')
+        if (response.tags) {
+
+            const h = document.createElement("span")
+            h.setAttribute("class", "emphasis");
+            h.innerText = "Tags: ";
+
+            tags.appendChild(h);
+
+            let tagsArr = [];
+
+            response.tags.forEach(t => {
+
+                const tag = document.createElement("a")
+                tag.setAttribute("href", `/topics/${t}`)
+                tag.setAttribute("class", "post_tags")
+                tag.innerText = t;
+                tags.appendChild(tag);
+
+            })
+
+            // tags.innerHTML = "<span class=\"emphasis\">Tags: </span>" + tagsArr.join(', '); // tags bruh
+        }
         author.setAttribute("href", response.credits.author.url);
         thumbnail.setAttribute("src", response.image);
 
@@ -38,6 +59,7 @@ function buildPost(socket) {
 
             const postContent = document.createElement("div");
             postContent.setAttribute("id",`post_content_${n+1}`);
+            postContent.setAttribute("class", "post_content")
             postContent.innerHTML = content[h];
 
             const anchor = document.createElement("a");
@@ -65,6 +87,7 @@ function buildPost(socket) {
 
 
 function getRelatedPosts(socket) {
+    
     socket.emit("related_posts");
     socket.on("related_posts", (data) => {
 
@@ -122,7 +145,7 @@ function addNewHeading() {
     heading.setAttribute("required", "");
 
 
-    const content = document.createElement("input");
+    const content = document.createElement("textarea");
     content.setAttribute("type", "text");
     content.setAttribute("id", `post_content_content_${am + 1}`);
     content.setAttribute("name", `content_${am+1}`);
@@ -159,8 +182,9 @@ function loadHome(socket) {
 
         data.forEach(u => {
 
-            const boxContent = document.createElement("div");
-            boxContent.setAttribute("class", "box_content");
+            const boxContent = document.createElement("a");
+            boxContent.setAttribute("class", "box_content_link");
+            boxContent.setAttribute("href", `/user/${u.name}`)
             boxContent.innerHTML = `${u.name} - ${u.posts.length} posts <span class="notification_disk">`;
 
             writers.appendChild(boxContent);

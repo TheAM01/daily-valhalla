@@ -6,9 +6,8 @@ function createRoutes (app, dir) {
 
     
     app.get('/', (req, res) => {
-        console.log(req.session)
         res.sendFile(j(dir, '/Public/index.html'))
-    })
+    });
     
     app.get('/home', (req, res) => {
         res.sendFile(j(dir, '/Public/index.html'))
@@ -18,9 +17,17 @@ function createRoutes (app, dir) {
         res.sendFile(j(dir, "/Public/Static/latest.html"))
     });
 
+    app.get("/disclaimer", (req, res) => {
+        res.sendFile(j(dir, "/Public/Static/disclaimer.html"))
+    })
+
     app.get('/topic/:topic', (req, res) => {
         res.sendFile(j(dir, "/Public/Dynamic/topic.html"));
-    })
+    });
+
+    app.get('/topics/:topic', (req, res) => {
+        res.sendFile(j(dir, "/Public/Dynamic/topic.html"));
+    });
 
     app.get('/post/:id', (req, res) => {
         const exists = fs.existsSync(j(dir, `/Public/Posts/${req.params.id}.json`));
@@ -30,7 +37,7 @@ function createRoutes (app, dir) {
 
     app.get('/create', (req, res) => {
         res.sendFile(j(dir, "/Public/Dynamic/add-post.html"))
-    })
+    });
 
     app.get('/script.js', (req, res) => {
         res.sendFile(j(dir, '/Public/Scripts/script.js'))
@@ -42,11 +49,11 @@ function createRoutes (app, dir) {
 
     app.get('/style.css', (req, res) => {
         res.sendFile(j(dir, '/Public/Styles/style.css'))
-    })
+    });
 
     app.get('/style_mobile.css', (req, res) => {
         res.sendFile(j(dir, '/Public/Styles/style_mobile.css'))
-    })
+    });
 
     app.get('/style_minor.css', (req, res) => {
         res.sendFile(j(dir, '/Public/Styles/style_minor.css'))
@@ -54,7 +61,9 @@ function createRoutes (app, dir) {
 
     app.post('/create', (req, res) => {
         create(req, res, dir);
-    })
+    });
+
+    
 }
 
 function j(dir, path) {

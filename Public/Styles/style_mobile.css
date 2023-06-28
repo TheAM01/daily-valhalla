@@ -1,5 +1,18 @@
 @media only screen and (max-width: 940px) {
 
+    html {
+        height: 100%;
+        overflow-x: hidden;
+    }
+
+    body {
+        display: flex;
+        flex-direction: column;
+        height: auto;
+        min-height: 100%;
+        overflow-x: hidden;
+    }
+
     .cells {
         font-size: 13px;
     }
@@ -8,11 +21,20 @@
         padding: 5px;
     }
 
+    .headlines {
+        display: flex;
+        /* height: 20px; */
+        overflow: unset;
+        overflow-x: hidden;
+    }
+
     .main {
         flex-direction: column;
         flex: 1;
+        /* height: 150vh; */
         width: auto;
         padding: 0;
+        /* border: 1px solid blue; */
     }
 
     .left {
@@ -20,12 +42,14 @@
     }
 
     .content {
+        /* border: 1px solid red; */
         margin: auto;
         margin-top: 50px;
         margin-bottom: 50px;
         max-width: none;
         flex: 1 0 0;
         width: auto;
+        overflow-y: unset;
     }
 
     .article_thumbnail {
@@ -38,14 +62,15 @@
 
     .right {
         max-width: none;
-        margin-top: 50px;
 
         flex-direction: row;
 
         width: auto;
-        height: auto;
+        /* height: auto; */
 
         overflow-x: scroll;
+        overflow-y: unset;
+        flex: 0 0 auto;
     }
 
     .related_posts {
@@ -124,5 +149,19 @@
         width: 100px;
 
         height: 100px;
+    }
+
+    .footer {
+        display: flex;
+        justify-self: flex-end;
+        margin-top: 50px;
+    }
+
+    .footer_bottom {
+        flex-direction: column;
+    }
+
+    .footer_panel {
+        border-bottom: 1px solid var(--accent);
     }
 }

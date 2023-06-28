@@ -41,7 +41,7 @@ function create(req, res, dir) {
         }
     });
 
-    const json = JSON.stringify(post)
+    const json = JSON.stringify(post, null, 2)
 
     fs.writeFileSync(`${dir}/Public/Posts/${body.title.toLowerCase().replaceAll(" ", "-").replaceAll(":", "-")}.json`, json)
 

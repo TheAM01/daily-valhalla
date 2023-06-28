@@ -17,8 +17,11 @@ function socket(socket, io, dir) {
         const arr = [];
 
         files.forEach(file => {
+
             const f = fs.readFileSync(`${dir}/Public/Posts/${file}`, {encoding: 'utf8'});
-            const data = JSON.parse(f)
+            const data = JSON.parse(f);
+
+            if ((Date.now() - data.timeInMs) > 604800000*2) return
 
             arr.push({
                 title: data.title,

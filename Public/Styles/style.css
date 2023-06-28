@@ -3,6 +3,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Raleway&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap');
 
+@import url('https://fonts.googleapis.com/css2?family=Agdasima:wght@400;700&family=Belanosima&family=Ysabeau+Office&display=swap');
+
 
 :root {
     --background: #F1F6F9;
@@ -13,13 +15,13 @@
     --font: #000;
 }
 
-:root {
+/* :root {
     --background: #FFF4E0;
     --primary: #FFBF9B;
     --secondary: #B46060;
     --accent: #4D4D4D;
     --emphasis: #152237;
-}
+} */
 
 * {
     /* border: 1px dotted red; */
@@ -56,6 +58,8 @@ body, html {
 }
 
 body {
+    /* display: flex; */
+    /* flex-direction: column; */
     margin: 0;
     /* padding-right: 10%;
     padding-left: 10%; */
@@ -72,11 +76,13 @@ body div, body div * {
     user-select: none;
     color: white;
     background-color: #000;
-    padding: 5px;
+    padding: 2px;
 }
 
 .logo {
-    font-family: 'Newsreader', serif;
+    font-family: 'Agdasima', serif;
+    font-weight: 700;
+    font-size: 20px;
     justify-self: center;
 }
 
@@ -150,6 +156,8 @@ body div, body div * {
 }
 
 .main {
+    
+    height: 100vh;
     /* width: 100%; */
     flex-direction: row;
 
@@ -157,6 +165,7 @@ body div, body div * {
 }
 
 .left, .right {
+    overflow-y: auto;
     min-width: 15%;
     max-width: 15%;
     width: 15%;
@@ -171,6 +180,7 @@ body div, body div * {
 }
 
 .content {
+    overflow-y: auto;
     width: auto;
     flex: 1;
 
@@ -182,13 +192,19 @@ body div, body div * {
 }
 
 .footer {
-    align-self: flex-end;
-    justify-content: center;
-    align-items: center;
 
-    height: 40px;
+    align-self: end;
+    flex-direction: column;
+    /* justify-content: space-evenly; */
+    /* align-items: start; */
+
+    /* padding: 20px; */
     margin-top: auto;
     margin-bottom: 0;
+    width: 100%;
+
+    background-color: var(--secondary);
+    
 }
 
 form#create {

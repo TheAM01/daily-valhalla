@@ -12,16 +12,12 @@
 
     <div class="header">
         <div class="logo">The Daily Valhalla</div>
-        <div class="icons">
-            <a href="www.instagram.com/thedailyvalhalla" class="social_link"><img src="https://seeklogo.com/images/I/instagram-logo-A807AD378B-seeklogo.com.png" alt="instagram-logo" class="social_icons"></a>
-            <a href="www.instagram.com/thedailyvalhalla" class="social_link"><img src="https://seeklogo.com/images/I/instagram-logo-A807AD378B-seeklogo.com.png" alt="instagram-logo" class="social_icons"></a>
-            <a href="www.instagram.com/thedailyvalhalla" class="social_link"><img src="https://seeklogo.com/images/I/instagram-logo-A807AD378B-seeklogo.com.png" alt="instagram-logo" class="social_icons"></a>
-        </div>
     </div>
 
     <div class="navigation">
         <div class="cells"><a href="/home" class="nav_link">Home</a></div>
         <div class="cells"><a href="/latest" class="nav_link">Latest</a></div>
+        <div class="cells"><a href="/disclaimer" class="nav_link">Disclaimer</a></div>
         <div class="cells"><a href="/stories" class="nav_link">Stories</a></div>
         <div class="cells"><a href="/topics/international" class="nav_link">International</a></div>
         <div class="cells"><a href="/topics/politics" class="nav_link">Politics</a></div>
@@ -58,7 +54,7 @@
 
                     <div class="heading_content_group">
                         <input type="text" id="post_content_heading_1" name="heading_1" placeholder="Heading" class="std_input input_heading" required >
-                        <input type="text" id="post_content_content_1" name="content_1" placeholder="Content" class="std_input input_content" required >
+                        <textarea type="text" id="post_content_content_1" name="content_1" placeholder="Content" class="std_input input_content" required ></textarea>
                     </div>
 
                 </div>
@@ -78,7 +74,51 @@
     </div>
 
     <div class="footer">
-        Made by The AM
+
+        <div class="footer_top">
+            The Daily Valhalla - Made by The AM
+        </div>
+
+        <div class="footer_bottom">
+
+            <div class="footer_panel">
+                <a href="/disclaimer" class="footer_links">Disclaimer</a>
+                <a href="/credits" class="footer_links">Credits</a>
+                <a href="/contact" class="footer_links">Contact</a>
+                <a href="/terms-of-use" class="footer_links">Terms of use</a>
+                <a href="/contribution-guidelines" class="footer_links">Contribution guidelines</a>
+                <a href="/privacy-policy" class="footer_links">Privacy policy</a>
+            </div>
+
+            <div class="footer_panel">
+                <a href="/users" class="footer_links">Users</a>
+                <a href="/login" class="footer_links">Login</a>
+                <a href="/create" class="footer_links">Create a post</a>
+                <a href="/forum" class="footer_links">Talk</a>
+                <a href="/topics" class="footer_links">Topics</a>
+            </div>
+
+            <div class="footer_panel">
+                <a href="/subscribe" class="footer_links">Subscribe</a>
+                <a href="/advertise" class="footer_links">Advertise</a>
+                <a href="/sponsors" class="footer_links">Sponsors</a>
+            </div>
+
+            <div class="footer_panel">
+                <a href="/prayer-timings" class="footer_links">Prayer timings</a>
+                <a href="/weather" class="footer_links">Weather</a>
+                <a href="/usd-vs-pkr" class="footer_links">USD vs PKR</a>
+            </div>
+
+            <div class="footer_panel">
+                <a href="/valhalla" class="footer_links">Valhalla</a>
+                <a href="https://trustmebro.theam.ga" class="footer_links">Trust me bro project</a>
+                <a href="/based-news" class="footer_links">Based news</a>
+                <a href="http://instagram.com/fakenewsnetwork" class="footer_links">FNN</a>
+            </div>
+
+        </div>
+
     </div>
 
     <script src="/socket.io/socket.io.js"></script>

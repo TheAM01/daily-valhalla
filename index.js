@@ -43,5 +43,21 @@ createRoutes(app, dir);
 server.listen(port, () => {
     console.clear();
     console.log(`App is live.\nListening on port ${port}.`)
-    console.log(`Path: ${dir}.`)
-})
+    console.log(`Path: ${dir}.`);
+    // onload()
+});
+
+function onload() {
+    const posts = fs.readdirSync(dir+"/Public/Posts");
+
+    posts.forEach(post => {
+        console.log(post)
+        const postContent = fs.readFileSync(dir + "/Public/Posts/" + post);
+
+        const parsed = JSON.parse(postContent);
+        const prettyJSON = JSON.stringify(parsed, null, 2);
+
+        fs.writeFileSync(dir + "/Public/Posts/" + post, prettyJSON);
+
+    })
+}
