@@ -77,6 +77,13 @@ a.post_tags:last-child::after {
 
 .post_content {
     white-space: break-spaces;
+    flex-direction: column;
+}
+
+.in_content_img {
+    width: 80%;
+    height: auto;
+    margin: 20px auto 20px auto;
 }
 
 .heading_anchor {

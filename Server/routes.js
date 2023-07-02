@@ -19,6 +19,10 @@ function createRoutes (app, dir) {
 
     app.get("/disclaimer", (req, res) => {
         res.sendFile(j(dir, "/Public/Static/disclaimer.html"))
+    });
+
+    app.get("/user/:name", (req, res) => {
+        res.sendFile(j(dir, "/Public/Dynamic/user.html"))
     })
 
     app.get('/topic/:topic', (req, res) => {
@@ -63,6 +67,9 @@ function createRoutes (app, dir) {
         create(req, res, dir);
     });
 
+    app.get('*', function(req, res){
+        res.send('what???');
+    });
     
 }
 

@@ -101,6 +101,10 @@ function socket(socket, io, dir) {
 
     });
 
+    socket.on("get_user", username => {
+        fs.readdirSync(dir + "/Public/Users")
+    })
+
 }
 
 

@@ -126,7 +126,6 @@ function getRelatedPosts(socket) {
     })
 }
 
-
 function addNewHeading() {
     
     const form = document.getElementById("content_groups");
@@ -262,9 +261,9 @@ function getTopic(socket) {
 
     socket.on("get_topic", (data) => {
     
+        if (!data.length) return document.getElementById("topic_relevant_posts").innerHTML = "No posts found :(";
 
         data.forEach(p => {
-
             
             const parent = document.createElement("a");
             parent.setAttribute("class", "latest_post_parent");
@@ -306,6 +305,20 @@ function getTopic(socket) {
         });
         
     });
+}
+
+function getUser(socket) {
+
+    const urx = new URL(window.location.href);
+    const user_name = (urx.pathname.split('/')[2]);
+    console.log(user_name);
+
+    socket.emit("get_user", user_name);
+
+    socket.on("get_user", (data) => {
+        
+    })
+
 }
 
 function removeHeading(element) {
