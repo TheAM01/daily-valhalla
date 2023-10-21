@@ -13,7 +13,7 @@ const app = express();
 const dir = path.resolve();
 const jsonParser = bodyParser.json();
 const server = http.createServer(app);
-const port  = process.env.PORT || 2000 || 2001;
+const port  = process.env.PORT || 3000 || 2001;
 const urlencodedParser = bodyParser.urlencoded({ extended: false })
 
 app.use(session({
